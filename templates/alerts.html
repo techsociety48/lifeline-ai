@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lifeline AI Alerts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body data-page="alerts">
+  <header class="topbar">
+    <a href="/" class="btn">Back</a>
+    <div class="brand">INCIDENT REVIEW QUEUE</div>
+    <div id="liveClock" class="mono"></div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>Pending Incidents</h2>
+      <div id="pendingList" class="stack"></div>
+    </section>
+    <section class="panel">
+      <h2>Reviewed Incidents</h2>
+      <div id="reviewedList" class="stack"></div>
+    </section>
+  </main>
+
+  <div id="reviewModal" class="modal hidden">
+    <div class="modal-card">
+      <h3>Review Footage</h3>
+      <video controls width="100%" src="" id="reviewVideo"></video>
+      <button id="markReviewedBtn" class="btn primary">MARK AS REVIEWED</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

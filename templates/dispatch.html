@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lifeline AI Dispatch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body data-page="dispatch" data-incident-id="{{ incident_id }}" class="dispatch-page">
+  <main class="container">
+    <section class="panel">
+      <h1 class="danger-text">EMERGENCY RESPONSE INITIATED</h1>
+      <p id="dispatchMeta" class="mono">Incident: {{ incident_id }} | Loading dispatch details...</p>
+      <div id="steps" class="stack">
+        <article class="step hidden">Step 1: Incident Location Confirmed</article>
+        <article class="step hidden">Step 2: Ambulance Dispatched (AMB-07)</article>
+        <article class="step hidden">Step 3: Traffic Police Notified</article>
+        <article class="step hidden">Step 4: Golden Hour Timer Started - <span id="countdown">10:00</span></article>
+      </div>
+      <div class="button-row">
+        <a href="/" class="btn">RETURN TO DASHBOARD</a>
+        <a href="/alerts" class="btn primary">VIEW FULL INCIDENT LOG</a>
+      </div>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

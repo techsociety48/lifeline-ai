@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lifeline AI Camera Detail</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body data-page="camera" data-camera-id="{{ camera_id }}">
+  <header class="topbar">
+    <a href="/" class="btn">Back</a>
+    <div class="brand">CAMERA DETAIL <span class="accent">{{ camera_id }}</span></div>
+    <a class="notif" href="/alerts">Alerts <span id="notifCount" class="badge">0</span></a>
+  </header>
+
+  <main class="container split">
+    <section class="video-stage">
+      <div id="hudModel" class="hud top-left mono">MODEL: YOLOv8n | TRACKER: ByteTrack | FPS: --</div>
+      <div id="hudCounts" class="hud top-right mono">PERSONS: -- | VEHICLES: -- | CONF: -- | SZ: --</div>
+      <div class="hud bottom-left mono">GPS: {{ camera.lat if camera else '--' }}, {{ camera.lng if camera else '--' }}</div>
+      <div class="hud bottom-center mono">{{ camera_id }} | {{ camera.location if camera else 'Live Detection Stream' }}</div>
+      <img id="detectionStream" class="stream" src="/video_feed_detection/{{ camera_id }}" alt="Detection feed">
+    </section>
+    <aside class="panel side">
+      <h2>Camera Info</h2>
+      <p>ID: <span class="mono">{{ camera_id }}</span></p>
+      <p>Status: <span class="safe">{{ camera.status if camera else 'active' }}</span></p>
+      <p>Resolution: <span class="mono">1920x1080</span></p>
+      <div class="alert-box">Active alerts auto-update from detection engine.</div>
+      <h3>Detection Log</h3>
+      <ul id="detectionLog" class="log-list"></ul>
+    </aside>
+  </main>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

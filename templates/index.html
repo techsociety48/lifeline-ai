@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lifeline AI Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body data-page="dashboard">
+  <header class="topbar">
+    <div class="brand">LIFELINE AI <span class="dot-live"></span></div>
+    <div id="liveClock" class="mono"></div>
+    <a class="notif" href="/alerts">Alerts <span id="notifCount" class="badge">0</span></a>
+  </header>
+
+  <main class="container">
+    <section class="stats-grid">
+      <article class="card"><h3>Cameras Active</h3><p id="statCameras">5</p></article>
+      <article class="card"><h3>Incidents Today</h3><p id="statIncidents">2</p></article>
+      <article class="card"><h3>Avg Response Time</h3><p id="statResponse">01:48</p></article>
+      <article class="card"><h3>System Status</h3><p class="safe">OPERATIONAL</p></article>
+    </section>
+
+    <section class="camera-grid" id="cameraGrid"></section>
+
+    <section class="bottom-grid">
+      <article class="panel">
+        <h2>Nearby Hospitals</h2>
+        <table id="hospitalTable">
+          <thead><tr><th>Name</th><th>Distance</th><th>Empty Beds</th><th>GPS</th><th>Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </article>
+      <article class="panel">
+        <h2>Police Stations</h2>
+        <table id="policeTable">
+          <thead><tr><th>Name</th><th>Distance</th><th>Contact</th><th>GPS</th><th>Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>Recent Incidents</h2>
+      <div id="incidentStrip" class="incident-strip"></div>
+    </section>
+  </main>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
